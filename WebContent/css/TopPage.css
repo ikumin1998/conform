@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+.logleft {
+	float:right;
+	margin:50px;
+	padding:5px;
+	text-align:center;
+}
+.login{
+	display:inline-block;
+	margin:10px;
+	font-size:110%;
+	font-weight:800;
+}
+.loginA{
+	text-decoration:none;	
+}
+.loginA:visited{
+  color : #ff4081;
+}
+.loginA:hover{
+  color : #ff7043;
+}
+.welcome{
+	margin:10px 10px;
+	padding: 3px;
+	width:30%;
+	text-align:center;
+	font-size: 140%;
+	color: RGB(255,0,0);
+}
+.pages{
+	text-align:center;
+}
+.boxname{
+	display:inline-block;
+	margin:10px 30px 30px 30px;
+	padding: 20px;
+	border:3px solid black;
+	font-size:150%;
+	font-weight:500;
+}
+.addpages{
+	text-align:left;
+}
+.addpagesname{
+	display:inline-block;
+	margin:10px 30px 30px 30px;
+	padding: 20px;
+	font-size:130%;
+	font-weight:200;
+}

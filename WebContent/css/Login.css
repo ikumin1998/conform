@@ -1,0 +1,47 @@
+@charset "UTF-8";
+@import url("style.css");
+
+.log-form{
+	margin:20px Auto;
+	position:ralative;
+	border:3px solid black;
+	width:50%;
+	text-align:center;
+}
+h3{
+	margin:10px 10px 0px 10px;
+	background-color:#D8BfD8;
+}
+.input{
+	margin: 20px 30px;
+	width:80%;
+	height:30px;
+}
+.botton{
+	margin:10px;
+	width:50%;
+}
+.msg {
+	margin: 10px Auto;
+	padding: 10px;
+	color:red;
+	text-align:center;
+	font-weight:500;
+	font-size:150%	
+}
+a {
+	text-decoration:none;
+	color:black;
+}
+a:hover{
+	color:#B0C4DE;
+}
+li{
+	list-style:none;
+}
+.Backbtn{
+	margin:30px ;
+	width:40%;
+	font-size:120%;
+	color:black;
+}
