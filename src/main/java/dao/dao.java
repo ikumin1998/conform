@@ -25,7 +25,6 @@ public class dao {
 				Person person = new Person();
 				person.setId(rs.getInt("id"));
 				person.setUserName(rs.getString("user_name"));
-				person.setName(rs.getString("name"));
 				person.setPassword(rs.getString("pass"));
 				return person;
 			}

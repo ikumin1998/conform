@@ -32,7 +32,6 @@ public class LoginDao {
 				Person person = new Person();
 				person.setId(rs.getInt("id"));
 				person.setUserName(rs.getString("user_name"));
-				person.setName(rs.getString("name"));
 				person.setPassword(rs.getString("pass"));
 				return person;
 			}
@@ -40,6 +39,25 @@ public class LoginDao {
 			e.printStackTrace();
 		}
 		return null;
-
+	}
+	
+	public int AddPerson(Person person) {
+		int result = -1;
+		String sql = "WITH add As(insert into login1(name,pass) values(?,?) returning ?,?,?,?,?,?) insert into person1(user_name,age,place,ftp,howlong,comment) select  * from add";
+		try(Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql)){
+			pstmt.setString(1, person.getName());
+			pstmt.setString(2, person.getPassword());
+			pstmt.setString(3, person.getUserName());
+			pstmt.setString(4, person.getAge());
+			pstmt.setString(5, person.getPlace());
+			pstmt.setString(6, person.getFTP());
+			pstmt.setString(7, person.getHowlong());
+			pstmt.setString(8, person.getComment());
+			result = pstmt.executeUpdate();
+		}catch(SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 }

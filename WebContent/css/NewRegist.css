@@ -5,20 +5,36 @@
 .log-form {
 	margin: 20px Auto;
 	position: ralative;
-	border: 3px solid black;
+	border: 1px solid #2F4F4F;
 	width: 50%;
 	text-align: center;
 }
 
 h3 {
 	margin: 10px 10px 0px 10px;
-	background-color: #D8BfD8;
+	background-color: #F4A460;
 }
 
 .input {
-	margin: 20px 30px;
+	margin: 10px 20px;
 	width: 80%;
 	height: 30px;
+}
+
+.inputReq {
+	margin: 10px 20px;
+	width: 80%;
+	height: 30px;
+}
+
+.area {
+	margin: 10px 20px;
+	width: 80%;
+	height: 60px;
+}
+
+.inputReq::placeholder {
+	color: red;
 }
 
 .botton {
