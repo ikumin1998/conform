@@ -1,0 +1,60 @@
+package servlet;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import dao.LoginDao;
+import entity.Board;
+import entity.Person;
+
+/**
+ * Servlet implementation class CreateBoardServlet
+ */
+@WebServlet("/CreateBoardServlet")
+public class CreateBoardServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public CreateBoardServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		String time = request.getParameter("time");
+		String place = request.getParameter("place");
+		String comment = request.getParameter("comment");
+		int id = Integer.parseInt(request.getParameter("id"));
+		LoginDao logindao = new LoginDao();
+		Person person = logindao.PersonInfo(id);
+		Board board = new Board();
+		board.setComment(comment);
+		board.setPlace(place);
+		board.setTime(time);
+		request.setAttribute("board", board);
+		request.setAttribute("person", person);
+		RequestDispatcher rd =request.getRequestDispatcher("./CreateBoardConfirm.jsp");
+		rd.forward(request, response);
+	}
+
+}

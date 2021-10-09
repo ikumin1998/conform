@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+@import url("style.css");
+
+.bigbox {
+	margin: 10px auto;
+	padding: 30px;
+	text-align: center;
+	width: 80%;
+}
+
+.one {
+	margin: 10px auto;
+	padding: 5px;
+	border: 2px solid black;
+}
+
+.top {
+	width: 33%;
+	display: inline-block;
+	padding: 5px;
+	margin: 10px 10px;
+	box-sizing: border-box;
+}
+
+input {
+	font-size: 130%;
+	margin: 10px 10px;
+	padding: 5px;
+}
+
+.top1 {
+	vertical-align: top;
+}
+
+.msg {
+	margin: 10px Auto;
+	padding: 10px;
+	color: red;
+	text-align: center;
+	font-weight: 500;
+	font-size: 150%
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+a:hover {
+	color: #B0C4DE;
+}
+
+li {
+	list-style: none;
+}
+
+.Backbtn {
+	margin: 30px;
+	width: 40%;
+	font-size: 120%;
+	color: black;
+}

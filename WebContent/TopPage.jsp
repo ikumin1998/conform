@@ -10,7 +10,10 @@
 </head>
 
 <%
-Person person = (Person) session.getAttribute("person");
+Person person = null;
+if (session.getAttribute("person") != null) {
+	person = (Person) session.getAttribute("person");
+}
 %>
 
 <body>
@@ -56,10 +59,31 @@ Person person = (Person) session.getAttribute("person");
 %>
 
 
-
+		<%
+		if (person != null) {
+		%>
 		<div class="pages">
 			<ul>
-				<li class="boxname">掲示板へ</li>
+				<li class="boxname">
+					<form method="post" action="./AllSerchBoardServlet">
+						<input type="submit" value="掲示板へ">
+					</form>
+				</li>
+				<li class="boxname"><%=person.getUserName()%>さんに関係する掲示板
+				</li>
+				<li class="boxname">登録情報の修正</li>
+			</ul>
+		</div>
+		<%
+		} else {
+		%>
+		<div class="pages">
+			<ul>
+				<li class="boxname">
+					<form method="post" action="./AllSerchBoardServlet">
+						<input type="submit" value="掲示板へ">
+					</form>
+				</li>
 				<li class="boxname">〇〇さんに関係する掲示板</li>
 				<li class="boxname">登録情報の修正</li>
 			</ul>
@@ -72,7 +96,9 @@ Person person = (Person) session.getAttribute("person");
 			</ul>
 		</div>
 
-
+		<%
+		}
+		%>
 
 		<footer>
 			<p>CopyRight UutyanShiroRider All Right Reserved
