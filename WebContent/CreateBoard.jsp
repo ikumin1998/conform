@@ -9,8 +9,9 @@
 <title>新規掲示板作成</title>
 </head>
 <body>
-	<%Person p =(Person) session.getAttribute("person")	;
- %>
+	<%
+	Person p = (Person) session.getAttribute("person");
+	%>
 
 
 	<main>
@@ -33,7 +34,7 @@
 					placeholder="一緒に走る場所を入力してください（例：荒川サイクリングロード）" required></textarea>
 				<textarea class="area" name="comment" rows="6" cols="40"
 					placeholder="自由にコメントをお書きください"></textarea>
-				<input type="hidden" value="<%=p.getId() %>" name="id">
+				<input type="hidden" value="<%=p.getId()%>" name="id">
 				<input class="botton" type="submit" class="btn" value="確認画面へ">
 			</form>
 		</div>

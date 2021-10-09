@@ -44,24 +44,49 @@ public class BoardDao {
 		return result;
 	}
 
-	public List<Board> AllSerch(){
+	public List<Board> AllSerch() {
 		List<Board> list = new ArrayList<Board>();
 		String sql = "SELECT * FROM board_detail JOIN person1 ON board_detail.member_id = person1.id";
-		try(Connection con = getConnection();
+		try (Connection con = getConnection();
 				PreparedStatement ps = con.prepareStatement(sql);
-				ResultSet rs = ps.executeQuery()){
-			while(rs.next()) {
+				ResultSet rs = ps.executeQuery()) {
+			while (rs.next()) {
 				Board b = new Board();
 				b.setTime(rs.getString("time"));
-				b.setPlace(rs.getString("place"));
-				b.setComment(rs.getString("comment"));
+				b.setPlace(rs.getString("board_place"));
+				b.setComment(rs.getString("board_comment"));
 				b.setName(rs.getString("user_name"));
 				b.setId(rs.getInt("board_id"));
 				list.add(b);
 			}
-		}catch(SQLException | ClassNotFoundException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	public Board SeeBoard(int memberId) {
+		String sql = "SELECT  * FROM board_detail JOIN person1 ON board_detail.member_id = person1.id WHERE board_id = ?";
+	try(Connection con = getConnection();
+			PreparedStatement ps = con.prepareStatement(sql)){
+		ps.setInt(1,memberId);
+		ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				Board b = new Board();
+				b.setId(rs.getInt("board_id"));
+				b.setComment(rs.getString("board_comment"));
+				b.setPlace(rs.getString("board_place"));
+				b.setTime(rs.getString("time"));
+				b.setName(rs.getString("user_name"));
+				b.setAge(rs.getString("age"));
+				b.setFtp(rs.getString("ftp"));
+				b.setHowlong(rs.getString("howlong"));
+				return b;
+			}
+		
+	}catch(SQLException|ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	return null;
 	}
 }
