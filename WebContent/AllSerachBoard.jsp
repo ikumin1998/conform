@@ -52,7 +52,7 @@
 		%>
 		<div class="bigbox">
 			<%
-			for (int i = 1; i < list.size(); i++) {
+			for (int i = 0; i < list.size(); i++) {
 				Board b = list.get(i);
 			%>
 			<div class="one">
@@ -71,7 +71,7 @@
 				</div>
 				<div class="top">
 					<form action="./SeeBoardDetailServlet" method="post">
-						<input type="hidden" value="<%=b.getId()%>" name="id">
+						<input type="hidden" value="<%=b.getBoardid()%>" name="id">
 						<input type="submit" value="詳細を確認">
 					</form>
 				</div>

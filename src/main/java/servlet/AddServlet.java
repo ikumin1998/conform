@@ -46,10 +46,10 @@ public class AddServlet extends HttpServlet {
 		String username = request.getParameter("name");
 		String pass = request.getParameter("pass");
 		//String name = request.getParameter("name");
-		String age = request.getParameter("age");
+		int age = Integer.parseInt(request.getParameter("age"));
 		String place = request.getParameter("place");
-		String ftp = request.getParameter("FTP");
-		String howlong = request.getParameter("howlong");
+		int ftp = Integer.parseInt(request.getParameter("FTP"));
+		int howlong = Integer.parseInt(request.getParameter("howlong"));
 		String comment = request.getParameter("comment");
 		Person person = new Person();
 		person.setAge(age);
@@ -67,7 +67,7 @@ public class AddServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/AddSucseed.jsp");
 			rd.forward(request, response);
 		} else {
-			response.sendRedirect("./ErrorPage.jsp");
+			response.sendRedirect("./Error.jsp");
 		}
 	}
 

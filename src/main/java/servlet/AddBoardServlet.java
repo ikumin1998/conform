@@ -18,41 +18,46 @@ import dao.BoardDao;
 @WebServlet("/AddBoardServlet")
 public class AddBoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AddBoardServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public AddBoardServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String time = request.getParameter("time");
 		String place = request.getParameter("place");
 		String comment = request.getParameter("comment");
-		int id = Integer.parseInt(request.getParameter("id"));//personのID
+		int id = Integer.parseInt(request.getParameter("id"));// personのID
 		BoardDao dao = new BoardDao();
-		int result = dao.Addboard(time,place,comment,id);
-		int count = dao.CountDB();//board_detailの一番最後の行数。４ならAddboardは４番目にいれたことになる
-		dao.AddInside(count,id);
-		if(result == 1) {
+		int count = dao.CountBoardde();
+		count = count + 1;// 最終行のプラス1をboardid に設定する
+		dao.AddInside(count);
+		int result = dao.Addboard(count, time, place, comment, id);
+		if (result == 1) {
 			request.setAttribute("comment", "成功");
 			RequestDispatcher rd = request.getRequestDispatcher("./CreateBoardSucseed.jsp");
 			rd.forward(request, response);
-		}else {
+		} else {
 			response.sendRedirect("./error.jsp");
 		}
 	}
