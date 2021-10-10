@@ -43,9 +43,11 @@ public class AddBoardServlet extends HttpServlet {
 		String time = request.getParameter("time");
 		String place = request.getParameter("place");
 		String comment = request.getParameter("comment");
-		int id = Integer.parseInt(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("id"));//personのID
 		BoardDao dao = new BoardDao();
 		int result = dao.Addboard(time,place,comment,id);
+		int count = dao.CountDB();//board_detailの一番最後の行数。４ならAddboardは４番目にいれたことになる
+		dao.AddInside(count,id);
 		if(result == 1) {
 			request.setAttribute("comment", "成功");
 			RequestDispatcher rd = request.getRequestDispatcher("./CreateBoardSucseed.jsp");

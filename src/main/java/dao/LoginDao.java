@@ -22,7 +22,7 @@ public class LoginDao {
 	}
 
 	public Person LoginCheck(String name, String pass) {
-		String sql = "SELECT * FROM person JOIN login1 ON person.user_name = login1.name WHERE login1.name = ? AND login1.pass=?";
+		String sql = "SELECT * FROM person1 JOIN login1 ON person1.user_name = login1.name WHERE login1.name = ? AND login1.pass=?";
 		try (Connection con = getConnection(); PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setString(1, name);
 			pstmt.setString(2, pass);

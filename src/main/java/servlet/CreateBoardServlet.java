@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.LoginDao;
 import entity.Board;
@@ -44,7 +45,7 @@ public class CreateBoardServlet extends HttpServlet {
 		String time = request.getParameter("time");
 		String place = request.getParameter("place");
 		String comment = request.getParameter("comment");
-		int id = Integer.parseInt(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("id"));//personのidであり、board_detialのmemberId
 		LoginDao logindao = new LoginDao();
 		Person person = logindao.PersonInfo(id);
 		Board board = new Board();

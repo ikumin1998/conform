@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entity.Board;
+import entity.BoardInside;
 
 public class BoardDao {
 	private static final String DRIVER = "org.postgresql.Driver";
@@ -67,11 +68,10 @@ public class BoardDao {
 
 	public Board SeeBoard(int memberId) {
 		String sql = "SELECT  * FROM board_detail JOIN person1 ON board_detail.member_id = person1.id WHERE board_id = ?";
-	try(Connection con = getConnection();
-			PreparedStatement ps = con.prepareStatement(sql)){
-		ps.setInt(1,memberId);
-		ResultSet rs = ps.executeQuery();
-			if(rs.next()) {
+		try (Connection con = getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+			ps.setInt(1, memberId);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
 				Board b = new Board();
 				b.setId(rs.getInt("board_id"));
 				b.setComment(rs.getString("board_comment"));
@@ -83,10 +83,59 @@ public class BoardDao {
 				b.setHowlong(rs.getString("howlong"));
 				return b;
 			}
-		
-	}catch(SQLException|ClassNotFoundException e) {
-		e.printStackTrace();
+
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
-	return null;
+
+	public List<BoardInside> SerachBoard(int id) {
+		ArrayList<BoardInside> list = new ArrayList<BoardInside>();
+		String sql = "SELECT * FROM board_inside JOIN board_detail ON board_inside.id= board_detail.board_id JOIN person1 ON person1.id = board_detail.member_id WHERE board_inside.id = ?";
+		try (Connection con = getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				BoardInside b = new BoardInside();
+				b.setId(rs.getInt("id"));
+				b.setCreatedId(rs.getInt("created_id"));
+				b.setName(rs.getString("msgname"));
+				b.setMsg(rs.getString("msg"));
+				b.setTime(getCurrentTimeStamp());
+				list.add(b);
+			}
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public int CountDB() {
+		int result = 0;
+		String sql = "SELECT  COUNT(*) from board_detail";
+		try (Connection con = getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				result = rs.getInt("count");
+			}
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public int AddInside(int boardid, int memberid) {
+		int result = -1;
+		String sql = "INSERT INTO board_inside(id,created_id)VALUES(?,?)";
+		try (Connection con = getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+			ps.setInt(1, boardid);
+			ps.setInt(2, memberid);
+			result = ps.executeUpdate();
+
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 }

@@ -36,49 +36,45 @@ if (request.getAttribute("board") != null) {
 			</div>
 		</div>
 		<div class="top">
-			<div class="second">
-				年齢
+			<div class="goboard">
+				<form action="./GoMessageBoardServlet" method="post">
+					<input type="hidden" name="id" value="<%=b.getId()%>">
+					<input type="submit" value="<%=b.getName()%>さんと会話をする" class="button">
+				</form>
 			</div>
+		</div>
+		<div class="top">
+			<div class="second">年齢</div>
 			<div class="second">
 				<%=b.getName()%>
 			</div>
 		</div>
 		<div class="top">
-			<div class="second">
-				FTP
-			</div>
+			<div class="second">FTP</div>
 			<div class="second">
 				<%=b.getFtp()%>
 			</div>
 		</div>
 		<div class="top">
-			<div class="second">
-				ロードバイク歴
-			</div>
+			<div class="second">ロードバイク歴</div>
 			<div class="second">
 				<%=b.getHowlong()%>
 			</div>
 		</div>
 		<div class="top">
-			<div class="second">
-				走りたい場所
-			</div>
+			<div class="second">走りたい場所</div>
 			<div class="second">
 				<%=b.getPlace()%>
 			</div>
 		</div>
 		<div class="top">
-			<div class="second">
-				時間帯
-			</div>
+			<div class="second">時間帯</div>
 			<div class="second">
 				<%=b.getTime()%>
 			</div>
 		</div>
 		<div class="top">
-			<div class="second2">
-				コメント欄
-			</div>
+			<div class="second2">コメント欄</div>
 			<div class="second3">
 				<%=b.getComment()%>
 			</div>

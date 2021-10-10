@@ -36,3 +36,23 @@
 	border: thick double #32a1ce;
 	text-align: center;
 }
+.goboard{
+	text-align:center;
+	margin:10px auto;
+}
+.button {
+  display       : inline-block;
+  border-radius : 20%;          /* 角丸       */
+  font-size     : 21pt;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 13px 54px;   /* 余白       */
+  background    : rgba(26, 26, 255, 0.94);     /* 背景色     */
+  color         : #ffffff;     /* 文字色     */
+  line-height   : 1em;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  box-shadow    : 6px 6px 3px #666666;  /* 影の設定 */
+}
+.button:hover {
+  box-shadow    : none;        /* カーソル時の影消去 */
+}
