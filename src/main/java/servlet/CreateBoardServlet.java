@@ -45,9 +45,9 @@ public class CreateBoardServlet extends HttpServlet {
 		String time = request.getParameter("time");
 		String place = request.getParameter("place");
 		String comment = request.getParameter("comment");
-		int id = Integer.parseInt(request.getParameter("id"));//personのidであり、board_detialのmemberId
+		int personid = Integer.parseInt(request.getParameter("id"));//personのidであり、board_detialのmemberId
 		LoginDao logindao = new LoginDao();
-		Person person = logindao.PersonInfo(id);
+		Person person = logindao.PersonInfo(personid);
 		Board board = new Board();
 		board.setComment(comment);
 		board.setPlace(place);

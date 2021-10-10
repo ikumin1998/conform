@@ -1,37 +1,55 @@
 package entity;
 
 public class Board {
-	private int id;
-	private int memberId;
+	private int id;// serial の id
+	private int memberId;// personidのこと
+	private int boardid;// 引数で入力するboardid
 	private String time;
 	private String place;
-	private String comment;
-	private String name;
-	private String ftp;
-	private String age;
-	private String howlong;
+	private String comment;// boarddeのコメントのこと
+	private String name;// usernameのこと
+	private int ftp;
+	private int age;
+	private int howlong;
+	private java.sql.Timestamp createtime;
 
-	public String getHowlong() {
+	public java.sql.Timestamp getCreatetime() {
+		return createtime;
+	}
+
+	public void setCreatetime(java.sql.Timestamp timestamp) {
+		this.createtime = timestamp;
+	}
+
+	public int getBoardid() {
+		return boardid;
+	}
+
+	public void setBoardid(int boardid) {
+		this.boardid = boardid;
+	}
+
+	public int getHowlong() {
 		return howlong;
 	}
 
-	public void setHowlong(String howlong) {
+	public void setHowlong(int howlong) {
 		this.howlong = howlong;
 	}
 
-	public String getFtp() {
+	public int getFtp() {
 		return ftp;
 	}
 
-	public void setFtp(String ftp) {
+	public void setFtp(int ftp) {
 		this.ftp = ftp;
 	}
 
-	public String getAge() {
+	public int getAge() {
 		return age;
 	}
 
-	public void setAge(String age) {
+	public void setAge(int age) {
 		this.age = age;
 	}
 

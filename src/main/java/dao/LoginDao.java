@@ -11,7 +11,7 @@ import entity.Person;
 public class LoginDao {
 
 	private static final String DRIVER = "org.postgresql.Driver";
-	private static final String URL = "jdbc:postgresql:postgres";
+	private static final String URL = "jdbc:postgresql:rundb";
 	private static final String USER = "postgres";
 	private static final String PASSWORD = "test";
 
@@ -22,15 +22,15 @@ public class LoginDao {
 	}
 
 	public Person LoginCheck(String name, String pass) {
-		String sql = "SELECT * FROM person1 JOIN login1 ON person1.user_name = login1.name WHERE login1.name = ? AND login1.pass=?";
+		String sql = "SELECT * FROM personinfo JOIN login ON personinfo.username = login.name WHERE login.name = ? AND login.pass=?";
 		try (Connection con = getConnection(); PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setString(1, name);
 			pstmt.setString(2, pass);
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
 				Person person = new Person();
-				person.setId(rs.getInt("id"));
-				person.setUserName(rs.getString("user_name"));
+				person.setId(rs.getInt("personid"));
+				person.setUserName(rs.getString("username"));
 				person.setPassword(rs.getString("pass"));
 				return person;
 			}
@@ -55,7 +55,7 @@ public class LoginDao {
 	 */
 	public int AddLogin1(String name, String pass) {
 		int result = -1;
-		String sql = "INSERT INTO login1 (name,pass) VALUES(?,?)";
+		String sql = "INSERT INTO login (name,pass) VALUES(?,?)";
 		try (Connection con = getConnection(); PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setString(1, name);
 			pstmt.setString(2, pass);
@@ -68,13 +68,13 @@ public class LoginDao {
 
 	public int AddPerson(Person person) {
 		int result = -1;
-		String sql = "INSERT INTO person1 (user_name,age,place,ftp,howlong,comment) VALUES(?,?,?,?,?,?)";
+		String sql = "INSERT INTO personinfo (username,age,place,ftp,howlong,commentp) VALUES(?,?,?,?,?,?)";
 		try (Connection con = getConnection(); PreparedStatement p = con.prepareStatement(sql)) {
 			p.setString(1, person.getUserName());
-			p.setString(2, person.getAge());
+			p.setInt(2, person.getAge());
 			p.setString(3, person.getPlace());
-			p.setString(4, person.getFTP());
-			p.setString(5, person.getHowlong());
+			p.setInt(4, person.getFTP());
+			p.setInt(5, person.getHowlong());
 			p.setString(6, person.getComment());
 			result = p.executeUpdate();
 		} catch (SQLException | ClassNotFoundException e) {
@@ -84,14 +84,14 @@ public class LoginDao {
 	}
 
 	public Person PersonInfo(int id) {
-		String sql = "SELECT * FROM person1 WHERE id = ?";
+		String sql = "SELECT * FROM personinfo WHERE id = ?";
 		try (Connection con = getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				Person p = new Person();
-				p.setId(rs.getInt("id"));
-				p.setUserName(rs.getString("user_name"));
+				p.setId(rs.getInt("personid"));
+				p.setUserName(rs.getString("username"));
 				return p;
 
 			}

@@ -1,3 +1,4 @@
+<%@page import="entity.Person"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,27 +9,9 @@
 <title>登録確認画面</title>
 </head>
 <%
-String name = (String) request.getAttribute("name");
-String pass = (String) request.getAttribute("pass");
-String age = "";
-if (request.getParameter("age") != "") {
-	age = (String) request.getAttribute("age");
-}
-String place = "";
-if (request.getAttribute("place") != "") {
-	place = (String) request.getAttribute("place");
-}
-String FTP = "";
-if (request.getParameter("FTP") != "") {
-	FTP = (String) request.getAttribute("FTP");
-}
-String howlong = "";
-if (request.getParameter("howlong") != "") {
-	howlong = (String) request.getAttribute("howlong");
-}
-String comment = "";
-if (request.getAttribute("comment") != "") {
-	comment = (String) request.getAttribute("comment");
+Person p = null;
+if (request.getAttribute("person") != null) {
+	p = (Person) request.getAttribute("person");
 }
 %>
 
@@ -50,43 +33,103 @@ if (request.getAttribute("comment") != "") {
 		</div>
 		<div class="element">
 			<span class="col1">ユーザー名</span>
-			<span class="col2"><%=name%></span>
+			<span class="col2"><%=p.getUserName()%></span>
 		</div>
 		<div class="element">
 			<span class="col1">パスワード</span>
-			<span class="col2"><%=pass%></span>
+			<span class="col2"><%=p.getPassword()%></span>
 		</div>
 		<div class="element">
 			<span class="col1">年齢</span>
-			<span class="col2"><%=age%></span>
+			<span class="col2">
+				<%
+				if (p.getAge() == 0) {
+				%>
+				未入力
+				<%
+				} else {
+				%>
+				<%=p.getAge()%>
+				<%
+				}
+				%>
+			</span>
 		</div>
 		<div class="element">
 			<span class="col1">居住地</span>
-			<span class="col2"><%=place%></span>
+			<span class="col2">
+				<%
+				if (p.getPlace().isEmpty()) {
+				%>
+				未入力
+				<%
+				} else {
+				%>
+				<%=p.getPlace()%>
+				<%
+				}
+				%>
+			</span>
 		</div>
 		<div class="element">
 			<span class="col1">FTP</span>
-			<span class="col2"><%=FTP%></span>
+			<span class="col2">
+				<%
+				if (p.getFTP() == 0) {
+				%>
+				未入力
+				<%
+				} else {
+				%>
+				<%=p.getFTP()%>
+				<%
+				}
+				%>
+			</span>
 		</div>
 		<div class="element">
 			<span class="col1">バイク歴</span>
-			<span class="col2"><%=howlong%></span>
+			<span class="col2">
+				<%
+				if (p.getHowlong() == 0) {
+				%>
+				未入力
+				<%
+				} else {
+				%>
+				<%=p.getHowlong()%>
+				<%
+				}
+				%>
+			</span>
 		</div>
 		<div class="element">
 			<span class="col1">コメント</span>
-			<span class="col2"><%=comment%></span>
+			<span class="col2">
+				<%
+				if (p.getComment().isEmpty()) {
+				%>
+				未入力
+				<%
+				} else {
+				%>
+				<%=p.getComment() %>
+				<%
+				}
+				%>
+			</span>
 		</div>
 	</div>
-	<div class = sendbox>
-		<div class = send>
+	<div class=sendbox>
+		<div class=send>
 			<form action="./AddServlet" method="post">
-				<input type="hidden" name="name" value="<%=name %>">
-				<input type="hidden" name="pass" value="<%=pass %>">
-				<input type="hidden" name="age" value="<%=age%>">
-				<input type="hidden" name="place" value="<%=place%>">
-				<input type="hidden" name="FTP" value="<%=FTP %>">
-				<input type="hidden" name="howlong" value="<%=howlong %>">
-				<input type="hidden" name="comment" value="<%=comment %>">
+				<input type="hidden" name="name" value="<%=p.getUserName()%>">
+				<input type="hidden" name="pass" value="<%=p.getPassword()%>">
+				<input type="hidden" name="age" value="<%=p.getAge()%>">
+				<input type="hidden" name="place" value="<%=p.getPlace()%>">
+				<input type="hidden" name="FTP" value="<%=p.getFTP()%>">
+				<input type="hidden" name="howlong" value="<%=p.getHowlong()%>">
+				<input type="hidden" name="comment" value="<%=p.getComment()%>">
 				<input class="btn" type="submit" value="新規登録">
 			</form>
 		</div>
@@ -106,15 +149,15 @@ if (request.getAttribute("comment") != "") {
 	</div>
 
 
-		<div class="Backbtn">
-			<span class="pages">
-				<a href="./TopPage.jsp">トップページへ戻る</a>
-			</span>
-		</div>
+	<div class="Backbtn">
+		<span class="pages">
+			<a href="./TopPage.jsp">トップページへ戻る</a>
+		</span>
+	</div>
 
-		<footer>
-			<p>CopyRight UutyanShiroRider All Right Reserved
-		</footer>
+	<footer>
+		<p>CopyRight UutyanShiroRider All Right Reserved
+	</footer>
 </main>
 
 </body>

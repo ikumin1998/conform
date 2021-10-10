@@ -1,3 +1,5 @@
+<%@page import="entity.BoardInside"%>
+<%@page import="java.util.List"%>
 <%@page import="entity.Person"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -9,6 +11,9 @@
 <title>一緒に走ろう！仮</title>
 </head>
 
+<%
+List<BoardInside> list = (List<BoardInside>) request.getAttribute("list");
+%>
 
 
 <body>
@@ -24,6 +29,10 @@
 		<div class="pagename">
 			<h2></h2>
 		</div>
+		<%for (int i=0;i<list.size();i++){
+			BoardInside bi = list.get(i); %>
+		} この掲示板の掲示板IDは<%=bi.getBoardid() %>です
+		<%} %>
 
 
 		<footer>

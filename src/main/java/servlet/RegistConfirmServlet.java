@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entity.Person;
+
 /**
  * Servlet implementation class RegistConfirmServlet
  */
@@ -38,33 +40,35 @@ public class RegistConfirmServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String name = request.getParameter("name");
 		String pass = request.getParameter("pass");
-		String age = "";
+		int  age=0;
 		if (!request.getParameter("age").isEmpty()) {
-			age = request.getParameter("age"); 
+			age = Integer.parseInt(request.getParameter("age")); 
 		}
 		String place = "";
 		if (!request.getParameter("place").isEmpty()) {
 			place = request.getParameter("place"); 
 		}
-		String FTP = "";
+		int FTP = 0;
 		if (!request.getParameter("FTP").isEmpty()) {
-			FTP = request.getParameter("FTP"); 
+			FTP = Integer.parseInt(request.getParameter("FTP")); 
 		}
-		String howlong = "";
+		int howlong = 0;
 		if (!request.getParameter("howlong").isEmpty()) {
-			howlong = request.getParameter("howlong"); 
+			howlong = Integer.parseInt(request.getParameter("howlong")); 
 		}
 		String comment = "";
 		if (!request.getParameter("comment").isEmpty()) {
 			comment = request.getParameter("comment"); 
 		}
-		request.setAttribute("name", name);
-		request.setAttribute("pass", pass);
-		request.setAttribute("age", age);
-		request.setAttribute("place", place);
-		request.setAttribute("FTP", FTP);
-		request.setAttribute("howlong", howlong);
-		request.setAttribute("comment", comment);
+		Person p = new Person();
+		p.setUserName(name);
+		p.setPassword(pass);
+		p.setComment(comment);
+		p.setPlace(place);
+		p.setAge(age);
+		p.setFTP(FTP);
+		p.setHowlong(howlong);
+		request.setAttribute("person", p);
 		RequestDispatcher rd = request.getRequestDispatcher("/RegistConfirm.jsp");
 		rd.forward(request, response);
 	}

@@ -1,68 +1,77 @@
 package entity;
 
 public class Person {
-	private int Id;
-	private String UserName;//person1に入れるよう
-	private String Name;//login1に入れる
+	private int Id;// personidのこと
+	private String UserName;
 	private String Password;
-	private String Age;
+	private int Age;
 	private String place;
-	private String FTP;
-	private String howlong;
+	private int FTP;
+	private int howlong;
 	private String comment;
-	
-	public String getAge() {
+
+	public int getAge() {
 		return Age;
 	}
-	public void setAge(String age) {
+
+	public void setAge(int age) {
 		Age = age;
 	}
+
 	public String getPlace() {
 		return place;
 	}
+
 	public void setPlace(String place) {
 		this.place = place;
 	}
-	public String getFTP() {
+
+	public int getFTP() {
 		return FTP;
 	}
-	public void setFTP(String fTP) {
+
+	public void setFTP(int fTP) {
 		FTP = fTP;
 	}
-	public String getHowlong() {
+
+	public int getHowlong() {
 		return howlong;
 	}
-	public void setHowlong(String howlong) {
+
+	public void setHowlong(int howlong) {
 		this.howlong = howlong;
 	}
+
 	public String getComment() {
 		return comment;
 	}
+
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+
 	public int getId() {
 		return Id;
 	}
+
 	public void setId(int id) {
 		Id = id;
 	}
+
 	public String getUserName() {
 		return UserName;
 	}
+
 	public void setUserName(String userName) {
 		UserName = userName;
 	}
+
 	public String getPassword() {
 		return Password;
 	}
+
 	public void setPassword(String password) {
 		Password = password;
-	}	public String getName() {
-		return Name;
 	}
-	public void setName(String name) {
-		Name = name;
-	}
-	
+
 }

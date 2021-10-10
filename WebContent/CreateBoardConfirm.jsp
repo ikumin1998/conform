@@ -12,7 +12,7 @@
 <body>
 	<%
 	Board board = (Board) request.getAttribute("board");
-	Person person = (Person) request.getAttribute("person");
+	Person person = (Person) session.getAttribute("person");
 	%>
 
 
@@ -45,7 +45,18 @@
 			<hr>
 			<div class="element">
 				<p class="moziue">自由コメント欄</p>
-				<p class="mozi"><%=board.getComment()%></p>
+				<p class="mozi">
+					<%
+					if (board.getComment().isEmpty()) {
+					%>
+					未入力
+					<%
+					} else {
+					%>
+					<%=board.getComment()%></p>
+				<%
+				}
+				%>
 
 			</div>
 		</div>
