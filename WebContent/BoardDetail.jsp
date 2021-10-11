@@ -39,6 +39,7 @@ if (request.getAttribute("board") != null) {
 			<div class="goboard">
 				<form action="./GoMessageBoardServlet" method="post">
 					<input type="hidden" name="id" value="<%=b.getBoardid()%>">
+					<input type="hidden" name="name" value="<%=b.getName() %>">
 					<input type="submit" value="<%=b.getName()%>さんと会話をする"
 						class="button">
 				</form>

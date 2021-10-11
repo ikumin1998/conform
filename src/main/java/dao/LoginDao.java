@@ -84,7 +84,7 @@ public class LoginDao {
 	}
 
 	public Person PersonInfo(int id) {
-		String sql = "SELECT * FROM personinfo WHERE id = ?";
+		String sql = "SELECT * FROM personinfo WHERE personid = ?";
 		try (Connection con = getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();

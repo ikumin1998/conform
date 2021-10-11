@@ -45,9 +45,11 @@ public class GoMessageBoardServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int boardid = Integer.parseInt(request.getParameter("id"));
+		String name = request.getParameter("name");
 		BoardDao dao = new BoardDao();
 		List<BoardInside> list = dao.SerachBoard(boardid);
 		request.setAttribute("list", list);
+		request.setAttribute("name", name);
 		RequestDispatcher rd = request.getRequestDispatcher("./MessageBoard.jsp");
 		rd.forward(request, response);
 

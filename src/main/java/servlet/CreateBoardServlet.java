@@ -45,15 +45,15 @@ public class CreateBoardServlet extends HttpServlet {
 		String time = request.getParameter("time");
 		String place = request.getParameter("place");
 		String comment = request.getParameter("comment");
-		int personid = Integer.parseInt(request.getParameter("id"));//personのidであり、board_detialのmemberId
-		LoginDao logindao = new LoginDao();
-		Person person = logindao.PersonInfo(personid);
+		//int personid = Integer.parseInt(request.getParameter("id"));//personのidであり、board_detialのmemberId
+		//LoginDao logindao = new LoginDao();
+		//Person person = logindao.PersonInfo(personid);
 		Board board = new Board();
 		board.setComment(comment);
 		board.setPlace(place);
 		board.setTime(time);
 		request.setAttribute("board", board);
-		request.setAttribute("person", person);
+		//request.setAttribute("person", person);
 		RequestDispatcher rd =request.getRequestDispatcher("./CreateBoardConfirm.jsp");
 		rd.forward(request, response);
 	}

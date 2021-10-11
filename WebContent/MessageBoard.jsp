@@ -13,6 +13,7 @@
 
 <%
 List<BoardInside> list = (List<BoardInside>) request.getAttribute("list");
+String name = (String) request.getAttribute("name");
 %>
 
 
@@ -29,12 +30,34 @@ List<BoardInside> list = (List<BoardInside>) request.getAttribute("list");
 		<div class="pagename">
 			<h2></h2>
 		</div>
-		<%for (int i=0;i<list.size();i++){
-			BoardInside bi = list.get(i); %>
-		} この掲示板の掲示板IDは<%=bi.getBoardid() %>です
-		<%} %>
 
+		<div class="topname">
+			<%=name%>さんのメッセージボード
+		</div>
 
+		<div class="msgboard">
+			<%
+			for (int i = 0; i < list.size(); i++) {
+				BoardInside bi = list.get(i);
+			%>
+			} この掲示板の掲示板IDは<%=bi.getBoardid()%>です
+			<%
+			}
+			%>
+		</div>
+		<div class="msgbox">
+			<form method="post" action="">
+				<textarea name="msg" rows="3" cols="40" placeholder="ここに送信するメッセージをお書きください"
+				required></textarea>
+			</form>
+		</div>
+		<div class="Backbtn">
+			<ul>
+				<li>
+					<a href="./TopPage.jsp">トップページへ戻る</a>
+				</li>
+			</ul>
+		</div>
 		<footer>
 			<p>CopyRight UutyanShiroRider All Right Reserved
 		</footer>

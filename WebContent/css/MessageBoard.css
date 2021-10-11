@@ -1,3 +1,57 @@
 @charset "UTF-8";
 
 @import url("style.css");
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+a:hover {
+	color: #B0C4DE;
+}
+
+li {
+	list-style: none;
+}
+
+.Backbtn {
+	margin: 30px;
+	width: 40%;
+	font-size: 120%;
+	color: black;
+}
+
+.topname {
+	margin: 10px auto;
+	padding: 5px;
+	text-decoration: under-line;
+	text-align: center;
+	width: 60%;
+	font-size: 130%;
+}
+
+.msgboard {
+	margin: 20px auto;
+	padding: 10px;
+	border: 1px solid black;
+	width: 70%;
+	text-align: center;
+}
+
+.msgbox {
+	margin:10px auto;
+	text-align:center;
+}
+textarea {
+	width: 40%;
+	height: 60px;
+	border: solid 2px #e1e3e8;
+	margin: 10px auto;
+	padding: 3px;
+}
+
+textarea:focus {
+	border-color: #56a9ff;
+	outline: 0;
+}

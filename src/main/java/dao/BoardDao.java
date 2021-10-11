@@ -102,7 +102,7 @@ public class BoardDao {
 			if (rs.next()) {
 				BoardInside b = new BoardInside();
 				b.setBoardid(rs.getInt("boardid"));
-				b.setName(rs.getString("msgname"));
+				b.setName(rs.getString("name"));
 				b.setMsg(rs.getString("msg"));
 				b.setTime(getCurrentTimeStamp());
 				list.add(b);
